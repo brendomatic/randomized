@@ -140,9 +140,8 @@ class DistributionControl {
     }
 
     public boolean available(Integer index) {
-        if(distribution.get(index) > 0){
+        if(distribution.get(index) > 0)
             return true;
-        }
         else
             return false;
     }
@@ -154,7 +153,7 @@ class DistributionControl {
     public boolean isEmpty(){
         boolean result = true;
         for( int i = 1; i <= 20; i++){
-            result = result || distribution.get(i) != 0;
+            result = result && distribution.get(i) != 0;
         }
         return !result;
     }
@@ -205,7 +204,7 @@ public class Main {
             else{
                 //Normally we would handle exeptions by terminating the program in question or throwing control to an
                 //upline calling method. Here we just print and exit the loop since we are not in an application server anyway
-                //and further
+                //additionally I would normally use a logging library to log error conditions such as this but it seemed like overkill here
                 System.out.println("Error condition found, distribution exhausted before it was supposed to, terminating.");
                 continue;
             }
