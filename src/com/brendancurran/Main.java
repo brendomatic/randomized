@@ -152,11 +152,11 @@ class DistributionControl {
      * @return
      */
     public boolean isEmpty(){
-        return distribution.get(1) == 0 && distribution.get(2) == 0 && distribution.get(3) == 0 && distribution.get(4) == 0 &&
-                distribution.get(5) == 0 && distribution.get(6) == 0 && distribution.get(7) == 0 && distribution.get(8) == 0 &&
-                distribution.get(9) == 0 && distribution.get(10) == 0 && distribution.get(11) == 0 && distribution.get(12) == 0 &&
-                distribution.get(13) == 0 && distribution.get(14) == 0 && distribution.get(15) == 0 && distribution.get(16) == 0 &&
-                distribution.get(17) == 0 && distribution.get(18) == 0 && distribution.get(19) == 0 && distribution.get(20) == 0;
+        boolean result = true;
+        for( int i = 1; i <= 20; i++){
+            result = result || distribution.get(i) != 0;
+        }
+        return !result;
     }
 }
 
@@ -214,6 +214,10 @@ public class Main {
         buildFile(numbers);
     }
 
+    /**
+     * Build and populate file with results
+     * @param numbers
+     */
     public static void buildFile(List<Integer> numbers){
         String filename = "test.output";
 
@@ -236,3 +240,4 @@ public class Main {
         }
     }
 }
+
