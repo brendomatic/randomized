@@ -186,16 +186,16 @@ public class Main {
                 //Randomly generate next value
                 int nextValue = (int) random.rand(MIN, MAX);
 
-                //LIMIT SOLUTION SPACE IN QUICK AND DIRTY WAY TO IMPROVE PERFORMANCE BY IMMEDIATELY SHIFTING UNAVAILABLE
-                //VALUES RATHER THAN ENDLESSLY RE-TRYING RANDOM GENERATION AT EACH UNAVAILABLE NUMBER FOUND.
-                while(!distributionControl.available(nextValue)){
-                    nextValue = (nextValue == 1) ? 20 : nextValue-1;
-                }
-
                 //Avoid contiguous repetition of values by iterating over our distribution until we find a new value
                 //in the case that our current value is the same as our the value immediately to our left
                 while (nextValue == prevValue ) {
                     nextValue = (int) random.rand(MIN, MAX);
+                }
+
+                //LIMIT SOLUTION SPACE IN QUICK AND DIRTY WAY TO IMPROVE PERFORMANCE BY IMMEDIATELY SHIFTING UNAVAILABLE
+                //VALUES RATHER THAN ENDLESSLY RE-TRYING RANDOM GENERATION AT EACH UNAVAILABLE NUMBER FOUND.
+                while(!distributionControl.available(nextValue)){
+                    nextValue = (nextValue == 1) ? MAX : nextValue-1;
                 }
 
                 numbers.add(i, nextValue);                                      //Store the value in our resultset
@@ -222,7 +222,7 @@ public class Main {
         ArrayList<String> strings = new ArrayList<>(numbers.size());
         for( Integer n : numbers ){
             if( n.equals(20)) {
-                System.out.println("The number 20 was found!!");    //Document location of the number 20
+                System.out.println(n);    //Document location of the number 20 by printing in console
             }
             strings.add( n.toString() );
         }
